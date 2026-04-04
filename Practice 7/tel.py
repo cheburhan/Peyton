@@ -17,12 +17,11 @@ except Exception as e:
 def add_contact_manual():
     name = input("Введите имя: ")
     phone = input("Введите телефон: ")
-    #отправка sql запроса
     cursor.execute(
         "INSERT INTO phonebook (first_name, phone) VALUES (%s, %s)",
         (name, phone)
     )
-    conn.commit() #сохранение изменения в базе, без нее данные будут просто висеть в памяти
+    conn.commit() 
     print("Контакт добавлен!")
 
 def add_contact_csv():
