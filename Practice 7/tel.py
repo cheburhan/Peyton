@@ -9,23 +9,23 @@ try:
         password="Samir_2007"  
     )
     cursor = conn.cursor()
-    print("Подключение к базе успешно!")
-except Exception as e:
-    print("Ошибка подключения:", e)
+    print("успешно!")
+except Exception as a:
+    print("Ошибка подключения:", a)
     exit()
 
 def add_contact_manual():
-    name = input("Введите имя: ")
-    phone = input("Введите телефон: ")
+    name = input("Имя: ")
+    phone = input("Телефон: ")
     cursor.execute(
         "INSERT INTO phonebook (first_name, phone) VALUES (%s, %s)",
         (name, phone)
     )
     conn.commit() 
-    print("Контакт добавлен!")
+    print("добавлен!")
 
 def add_contact_csv():
-    file_path = input("Введите путь к CSV файлу: ")
+    file_path = input("Путь к CSV: ")
     try:
         with open(file_path, 'r') as file:
             reader = csv.reader(file)
@@ -36,15 +36,15 @@ def add_contact_csv():
                     (row[0], row[1])
                 )
         conn.commit()
-        print("Контакты из CSV добавлены!")
-    except Exception as e:
-        print("Ошибка при работе с CSV:", e)
+        print("CSV добавлены!")
+    except Exception as a:
+        print("Ошибка", a)
 
 def update_contact():
     choice = input("Что хотите изменить? 1-Имя, 2-Телефон: ")
     if choice == '1':
-        old_phone = input("Введите телефон контакта: ")
-        new_name = input("Введите новое имя: ")
+        old_phone = input(" Новый телефон: ")
+        new_name = input(" новое имя: ")
         cursor.execute(
             "UPDATE phonebook SET first_name=%s WHERE phone=%s",
             (new_name, old_phone)
@@ -87,20 +87,15 @@ def delete_contact():
     conn.commit()
     print("Контакт удалён!")
 
-def delete_all():
-    cursor.execute("DELETE FROM phonebook")
-    conn.commit()
-    print("Все удалено!")
 
 while True:
-    print("\n--- PhoneBook ---")
+    print("-------------")
     print("1 - Добавить контакт вручную")
     print("2 - Добавить контакты из CSV")
     print("3 - Обновить контакт")
     print("4 - Просмотреть контакты")
     print("5 - Удалить контакт")
     print("6 - Выход")
-    print("7 - ВООБЩЕ ВСЕ СНЕСТИ")
     choice = input("Действие: ")
 
     if choice == '1':
@@ -115,8 +110,6 @@ while True:
         delete_contact()
     elif choice == '6':
         print("Ну все")
-    elif choice == '7':
-        delete_all()
         break
     else:
         print("Неверный выбор, попробуйте снова.")
