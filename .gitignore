@@ -2,3 +2,6 @@
 .venv
 music/*
 !music/.gitkeep
+doroja.jpeg
+greencar.png
+redcar.png
