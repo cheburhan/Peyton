@@ -16,10 +16,12 @@ except Exception as a:
 
 def add_contact_manual():
     name = input("Имя: ")
+    surname = input()
     phone = input("Телефон: ")
+
     cursor.execute(
-        "INSERT INTO phonebook (first_name, phone) VALUES (%s, %s)",
-        (name, phone)
+        "INSERT INTO phonebook (first_name,second, phone) VALUES (%s, %s, %s)",
+        (name, surname, phone)
     )
     conn.commit() 
     print("добавлен!")
