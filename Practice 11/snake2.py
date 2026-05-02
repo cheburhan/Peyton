@@ -1,4 +1,4 @@
-import pygame
+import pygame # type: ignore
 from colors import * 
 import random
 
